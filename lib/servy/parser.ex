@@ -9,7 +9,7 @@ defmodule Servy.Parser do
 
     [method, path, _] = String.split(request_line, " ")
 
-    headers = parse_headers(header_lines, %{})
+    headers = parse_headers(header_lines)
 
     params = parse_params(headers["Content-Type"], params_string)
 
@@ -21,13 +21,24 @@ defmodule Servy.Parser do
      }
   end
 
-  def parse_headers([head | tail], headers) do
-    [key, value] = String.split(head, ": ")
-    headers = Map.put(headers, key, value)
-    parse_headers(tail, headers)
+  # This is just one giant reduce.
+  # notice how the function passed to reduce has multiple clauses...
+  # first we pattern match to get the [k,V] pairs
+  # and then we put those pairs into the headers_so_far map
+  def parse_headers(header_lines) do
+    Enum.reduce(header_lines, %{}, fn(line, headers_so_far) ->
+      [k,v] = String.split(line, ": ")
+      Map.put(headers_so_far, k, v)
+    end)
   end
 
-  def parse_headers([], headers), do: headers
+  # def parse_headers([head | tail], headers) do
+  #   [key, value] = String.split(head, ": ")
+  #   headers = Map.put(headers, key, value)
+  #   parse_headers(tail, headers)
+  # end
+
+  # def parse_headers([], headers), do: headers
 
   def parse_params("application/x-www-form-urlencoded", params_string) do
     params_string |> String.trim |> URI.decode_query

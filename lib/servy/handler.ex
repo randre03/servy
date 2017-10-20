@@ -82,7 +82,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 request = """
@@ -94,7 +93,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 request = """
@@ -106,7 +104,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 request = """
@@ -118,7 +115,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 request = """
@@ -130,7 +126,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 
@@ -143,7 +138,6 @@ Accept: */*
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
 
 request = """
@@ -158,5 +152,4 @@ name=Baloo&type=Brown
 """
 
 response = Servy.Handler.handle(request)
-
 IO.puts response
