@@ -1,0 +1,7 @@
+<h1>All The Bears!</h1>
+
+<ul>
+    <%= for bear <- bears do %> # see use of Comprehension here (and need to close the do with <% end %> at the bottom
+      <li><%= bear.name  %> - <%= bear.type %></li>
+    <% end %>
+</ul>
