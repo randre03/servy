@@ -10,7 +10,7 @@ defmodule Servy.Recurse do
     [f.(h) | my_map(t, f)]
   end
 
-  def my_map([],f), do: []
+  def my_map([],_f), do: []
 end
 
 IO.inspect(Servy.Recurse.triple([1,2,3,4,5]))
